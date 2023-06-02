@@ -1,0 +1,29 @@
+html, body {
+    margin: 0;
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.library {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    background-color: purple;
+    min-height: 300px;
+    min-width: 300px;
+    color: white;
+    padding: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
