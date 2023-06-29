@@ -4,6 +4,7 @@ body {
     height: 100vh;
     display: grid;
     grid-template-rows: 2fr 8fr 1fr;
+    position: relative;
 }
 
 nav {
@@ -15,8 +16,51 @@ nav {
     align-items: center;
 }
 
-.library {
+.library-grid {
     background-color: antiquewhite;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 200px));
+    grid-template-rows: repeat(auto-fit, clamp(200px, 50%, 500px));
+    gap: 1em;
+}
+
+/* .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 7px;
+    background-color: white;
+} */
+
+.hidden {
+    display: none;
+}
+
+.new-book-form {
+    margin: 0;
+    border: 1px solid gray;
+    border-radius: 7px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+button {
+    border: 2px solid blue;
+    background-color: lightskyblue;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 footer {
