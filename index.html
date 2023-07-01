@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Library</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav>
-        <h1>THIS IS THE TOP OF THE WEBSITE</h1>
+      <h1>THIS IS THE TOP OF THE WEBSITE</h1>
     </nav>
 
     <div class="library-grid">
-        <button class="display-form-button">Push Me</button>
+      <button class="display-form-button">Push Me</button>
     </div>
 
     <div class="form-wrapper hidden">
-        <div class="new-book-form">
-            <label for="title">Book Title: </label>
-            <input type="text" name="title" id="title">
-            <label for="title">Author: </label>
-            <input type="text" name="author" id="author">
-            <label for="title">Pages: </label>
-            <input type="text" name="pages" id="pages">
-            <button class="submit-book-btn">Add New Book</button>
+      <div class="new-book-form">
+        <div class="input-format">
+          <label for="title">Book Title: </label>
+          <input type="text" name="title" id="title" />
         </div>
+        <div class="input-format">
+          <label for="title">Author: </label>
+          <input type="text" name="author" id="author" />
+        </div>
+        <div class="input-format">
+          <label for="title">Pages: </label>
+          <input type="text" name="pages" id="pages" />
+        </div>
+
+        <button class="submit-book-btn">Add New Book</button>
+      </div>
     </div>
-    
-    
+
     <footer>
-        <p>This is a footer</p>
+      <p>This is a footer</p>
     </footer>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
