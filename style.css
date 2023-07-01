@@ -55,6 +55,12 @@ nav {
     z-index: 2;
 }
 
+.input-format {
+    width: 100%;
+    display: flex;
+    gap: .5em;
+}
+
 button {
     border: 2px solid blue;
     background-color: lightskyblue;
