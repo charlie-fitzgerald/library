@@ -17,6 +17,8 @@ const newBookBtn = document.querySelector("#newBook");
 const libraryDisplay = document.querySelector(".library-display");
 const hiddenForm = document.querySelector("#hidden-form");
 const submitBtn = document.querySelector("#submit");
+const readBtn = document.querySelector(".read-btn");
+const deleteBtn = document.querySelector(".delete-btn");
 const bookTitle = document.querySelector("#title");
 const bookAuthor = document.querySelector("#author");
 const bookPages = document.querySelector("#pages");
@@ -48,6 +50,7 @@ function clearInputs() {
 
 submitBtn.addEventListener("click", e => {
   e.preventDefault();
+
   let title = bookTitle.value;
   let author = bookAuthor.value;
   let pages = bookPages.value;
@@ -77,16 +80,17 @@ function displayBooks() {
      <p>Author: ${myLibrary[i].author}</p>
      <p>Pages: ${myLibrary[i].pages}</p>
      <p>Read: Yes</p>
-     <button id="read-button-${i}">Change Read Status</button>`;
+     <button id="read-btn">Change Read Status</button>
+     <button class="delete-btn">Delete Book</button>`;
     } else {
       newDiv.innerHTML = 
     `<p>Title: ${myLibrary[i].title}</p>
      <p>Author: ${myLibrary[i].author}</p>
      <p>Pages: ${myLibrary[i].pages}</p>
      <p>Read: No</p>
-     <button read-button-${i}>Change Read Status</button>`;
-    }
-    
+     <button read-btn-${i}>Change Read Status</button>
+     <button class="delete-btn-${i}">Delete Book</button>`;
+    }   
 
     libraryDisplay.appendChild(newDiv);
   }
