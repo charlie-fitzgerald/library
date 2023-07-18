@@ -17,8 +17,6 @@ const newBookBtn = document.querySelector("#newBook");
 const libraryDisplay = document.querySelector(".library-display");
 const hiddenForm = document.querySelector("#hidden-form");
 const submitBtn = document.querySelector("#submit");
-const readBtn = document.querySelector(".read-btn");
-const deleteBtn = document.querySelector(".delete-btn");
 const bookTitle = document.querySelector("#title");
 const bookAuthor = document.querySelector("#author");
 const bookPages = document.querySelector("#pages");
@@ -46,6 +44,16 @@ function clearInputs() {
   bookAuthor.value = "";
   bookPages.value = "";
   bookRead.checked = false;
+}
+
+function buttonEvent(nodeList) {
+  for (let i = 0; i < nodeList.length; i++) {
+    nodeList[i].addEventListener("click", e => {
+      e.preventDefault();
+
+      console.log("click");
+    });
+  }
 }
 
 submitBtn.addEventListener("click", e => {
@@ -80,20 +88,26 @@ function displayBooks() {
      <p>Author: ${myLibrary[i].author}</p>
      <p>Pages: ${myLibrary[i].pages}</p>
      <p>Read: Yes</p>
-     <button id="read-btn">Change Read Status</button>
-     <button class="delete-btn">Delete Book</button>`;
+     <button class="read-btn" id="read-btn-${i}">Change Read Status</button>
+     <button class="delete-btn" id="delete-btn-${i}">Delete Book</button>`;
     } else {
       newDiv.innerHTML = 
     `<p>Title: ${myLibrary[i].title}</p>
      <p>Author: ${myLibrary[i].author}</p>
      <p>Pages: ${myLibrary[i].pages}</p>
      <p>Read: No</p>
-     <button read-btn-${i}>Change Read Status</button>
-     <button class="delete-btn-${i}">Delete Book</button>`;
+     <button class="read-btn" id="read-btn-${i}">Change Read Status</button>
+     <button class="delete-btn" id="delete-btn-${i}">Delete Book</button>`;
     }   
 
-    libraryDisplay.appendChild(newDiv);
+    libraryDisplay.appendChild(newDiv);    
   }
+
+  const readBtn = document.querySelectorAll(".read-btn");
+  const deleteBtn = document.querySelectorAll(".delete-btn");
+
+  buttonEvent(readBtn);
+  buttonEvent(deleteBtn);
 }
 
 displayBooks();
