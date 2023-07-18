@@ -9,16 +9,21 @@ const myLibrary = [
     title: "Sirens of Titan",
     author: "Kurt Vonnegut",
     pages: 250,
-    read: true
+    read: false
   }
 ];
 
 const newBookBtn = document.querySelector("#newBook");
 const libraryDisplay = document.querySelector(".library-display");
 const hiddenForm = document.querySelector("#hidden-form");
+const submitBtn = document.querySelector("#submit");
+const bookTitle = document.querySelector("#title");
+const bookAuthor = document.querySelector("#author");
+const bookPages = document.querySelector("#pages");
+const bookRead = document.querySelector("#read");
+
 
 function Book(title, author, pages, read) {
-
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -28,13 +33,36 @@ function Book(title, author, pages, read) {
   }
 }
 
-function addBookToLibrary() {
-  // do stuff here
+function addBookToLibrary(title, author, pages, read) {
+  let book = new Book(title, author, pages, read);
+
+  myLibrary.push(book);
 }
+
+function clearInputs() {
+  bookTitle.value = "";
+  bookAuthor.value = "";
+  bookPages.value = "";
+  bookRead.checked = false;
+}
+
+submitBtn.addEventListener("click", e => {
+  e.preventDefault();
+  let title = bookTitle.value;
+  let author = bookAuthor.value;
+  let pages = bookPages.value;
+  let read = bookRead.checked;
+  
+  addBookToLibrary(title, author, pages, read);
+  hiddenForm.classList.toggle("hidden");
+  libraryDisplay.innerHTML = "";
+  clearInputs();  
+  displayBooks();
+})
 
 newBookBtn.addEventListener("click", e => {
   e.preventDefault();
-  
+
   hiddenForm.classList.toggle("hidden");
 })
 
@@ -43,12 +71,22 @@ function displayBooks() {
     const newDiv = document.createElement("div");
     newDiv.setAttribute("class", `card data-${i}`);
 
-    newDiv.innerHTML = 
+    if (myLibrary[i].read === true) {
+      newDiv.innerHTML = 
     `<p>Title: ${myLibrary[i].title}</p>
      <p>Author: ${myLibrary[i].author}</p>
      <p>Pages: ${myLibrary[i].pages}</p>
-     <p>Read: ${myLibrary[i].read}</p>
-     <button>Change Read Status</button>`;
+     <p>Read: Yes</p>
+     <button id="read-button-${i}">Change Read Status</button>`;
+    } else {
+      newDiv.innerHTML = 
+    `<p>Title: ${myLibrary[i].title}</p>
+     <p>Author: ${myLibrary[i].author}</p>
+     <p>Pages: ${myLibrary[i].pages}</p>
+     <p>Read: No</p>
+     <button read-button-${i}>Change Read Status</button>`;
+    }
+    
 
     libraryDisplay.appendChild(newDiv);
   }
