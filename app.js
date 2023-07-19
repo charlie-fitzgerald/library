@@ -46,14 +46,15 @@ function clearInputs() {
   bookRead.checked = false;
 }
 
-function buttonEvent(nodeList) {
-  for (let i = 0; i < nodeList.length; i++) {
-    nodeList[i].addEventListener("click", e => {
-      e.preventDefault();
+function deleteBook(index) {
+  myLibrary.splice(index, 1);
+  displayBooks();
+}
 
-      console.log("click");
-    });
-  }
+function changeReadStatus(index) {
+  myLibrary[index].read = !myLibrary[index].read;
+
+  displayBooks();
 }
 
 submitBtn.addEventListener("click", e => {
@@ -66,7 +67,7 @@ submitBtn.addEventListener("click", e => {
   
   addBookToLibrary(title, author, pages, read);
   hiddenForm.classList.toggle("hidden");
-  libraryDisplay.innerHTML = "";
+  
   clearInputs();  
   displayBooks();
 })
@@ -78,6 +79,7 @@ newBookBtn.addEventListener("click", e => {
 })
 
 function displayBooks() {
+  libraryDisplay.innerHTML = "";
   for (let i = 0; i < myLibrary.length; i++) {
     const newDiv = document.createElement("div");
     newDiv.setAttribute("class", `card data-${i}`);
@@ -88,26 +90,20 @@ function displayBooks() {
      <p>Author: ${myLibrary[i].author}</p>
      <p>Pages: ${myLibrary[i].pages}</p>
      <p>Read: Yes</p>
-     <button class="read-btn" id="read-btn-${i}">Change Read Status</button>
-     <button class="delete-btn" id="delete-btn-${i}">Delete Book</button>`;
+     <button class="read-btn" onclick="changeReadStatus(${i})">Change Read Status</button>
+     <button class="delete-btn" onclick="deleteBook(${i})">Delete Book</button>`;
     } else {
       newDiv.innerHTML = 
     `<p>Title: ${myLibrary[i].title}</p>
      <p>Author: ${myLibrary[i].author}</p>
      <p>Pages: ${myLibrary[i].pages}</p>
      <p>Read: No</p>
-     <button class="read-btn" id="read-btn-${i}">Change Read Status</button>
-     <button class="delete-btn" id="delete-btn-${i}">Delete Book</button>`;
+     <button class="read-btn" onclick="changeReadStatus(${i})">Change Read Status</button>
+     <button class="delete-btn" onclick="deleteBook(${i})">Delete Book</button>`;
     }   
 
-    libraryDisplay.appendChild(newDiv);    
+    libraryDisplay.appendChild(newDiv);
   }
-
-  const readBtn = document.querySelectorAll(".read-btn");
-  const deleteBtn = document.querySelectorAll(".delete-btn");
-
-  buttonEvent(readBtn);
-  buttonEvent(deleteBtn);
 }
 
 displayBooks();
